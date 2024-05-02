@@ -1,0 +1,28 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "CloudFormation Template to Create an IAM Role with a Trust Relationship and Permissions Policy",
+    "Resources": {
+        "MyRolePolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "MyIAMRolePolicy",
+                "Roles": [
+                    "MyIAMRole"
+                ],
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                            ],
+                            "Resource": "arn:aws:logs:us-east-1:228947353622:log-group:bedrock-logs:*"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
